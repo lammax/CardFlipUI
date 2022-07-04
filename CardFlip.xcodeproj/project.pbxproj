@@ -11,7 +11,6 @@
 		AE48B2312872BD5200109F84 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE48B2302872BD5200109F84 /* ContentView.swift */; };
 		AE48B2332872BD5300109F84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE48B2322872BD5300109F84 /* Assets.xcassets */; };
 		AE48B2362872BD5300109F84 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE48B2352872BD5300109F84 /* Preview Assets.xcassets */; };
-		AE48B2382872BD5300109F84 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE48B2372872BD5300109F84 /* Persistence.swift */; };
 		AE48B23B2872BD5300109F84 /* CardFlip.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AE48B2392872BD5300109F84 /* CardFlip.xcdatamodeld */; };
 		AE48B2452872BD5300109F84 /* CardFlipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE48B2442872BD5300109F84 /* CardFlipTests.swift */; };
 		AE48B24F2872BD5300109F84 /* CardFlipUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE48B24E2872BD5300109F84 /* CardFlipUITests.swift */; };
@@ -41,7 +40,6 @@
 		AE48B2302872BD5200109F84 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AE48B2322872BD5300109F84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AE48B2352872BD5300109F84 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		AE48B2372872BD5300109F84 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		AE48B23A2872BD5300109F84 /* CardFlip.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CardFlip.xcdatamodel; sourceTree = "<group>"; };
 		AE48B2402872BD5300109F84 /* CardFlipTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardFlipTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE48B2442872BD5300109F84 /* CardFlipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFlipTests.swift; sourceTree = "<group>"; };
@@ -101,7 +99,6 @@
 				AE48B22E2872BD5200109F84 /* CardFlipApp.swift */,
 				AE48B2302872BD5200109F84 /* ContentView.swift */,
 				AE48B2322872BD5300109F84 /* Assets.xcassets */,
-				AE48B2372872BD5300109F84 /* Persistence.swift */,
 				AE48B2392872BD5300109F84 /* CardFlip.xcdatamodeld */,
 				AE48B2342872BD5300109F84 /* Preview Content */,
 			);
@@ -263,7 +260,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE48B2382872BD5300109F84 /* Persistence.swift in Sources */,
 				AE48B2312872BD5200109F84 /* ContentView.swift in Sources */,
 				AE48B23B2872BD5300109F84 /* CardFlip.xcdatamodeld in Sources */,
 				AE48B22F2872BD5200109F84 /* CardFlipApp.swift in Sources */,

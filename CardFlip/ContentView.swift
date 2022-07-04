@@ -9,80 +9,81 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
-
+    //MARK: Variables
+        @State var backDegree = 0.0
+        @State var frontDegree = -90.0
+        @State var isFlipped = false
+        
+        let width : CGFloat = 200
+        let height : CGFloat = 300
+        let durationAndDelay : CGFloat = 0.3
+    
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
-                    }
-                }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-            Text("Select an item")
+        ZStack {
+            CardFront(width: width, height: height, degree: $frontDegree)
+            CardBack(width: width, height: height, degree: $backDegree)
+        }.onTapGesture {
+            flipCard ()
         }
     }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+    
+    //MARK: Flip Card Function
+    func flipCard () {
+        isFlipped = !isFlipped
+        if isFlipped {
+            withAnimation(.linear(duration: durationAndDelay)) {
+                backDegree = 90
             }
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            withAnimation(.linear(duration: durationAndDelay).delay(durationAndDelay)){
+                frontDegree = 0
+            }
+        } else {
+            withAnimation(.linear(duration: durationAndDelay)) {
+                frontDegree = -90
+            }
+            withAnimation(.linear(duration: durationAndDelay).delay(durationAndDelay)){
+                backDegree = 0
             }
         }
     }
 }
 
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        ContentView()
+    }
+}
+
+struct CardFront: View {
+    let width : CGFloat
+    let height : CGFloat
+    @Binding var degree : Double
+    
+    
+    var body: some View {
+        ZStack {
+            Image("cardFront")
+                .resizable()
+                .frame(width: 200, height: 300)
+                .shadow(color: .gray, radius: 2, x: 0, y: 0)
+        }
+        .rotation3DEffect(Angle(degrees: degree), axis: (x: 0, y: 1, z: 0))
+    }
+}
+
+struct CardBack: View {
+    let width : CGFloat
+    let height : CGFloat
+    @Binding var degree : Double
+    
+    
+    var body: some View {
+        ZStack {
+            Image("cardBack")
+                .resizable()
+                .frame(width: 200, height: 300)
+                .shadow(color: .gray, radius: 2, x: 0, y: 0)
+        }
+        .rotation3DEffect(Angle(degrees: degree), axis: (x: 0, y: 1, z: 0))
     }
 }
